@@ -32,6 +32,11 @@ namespace Katas.RomanNumerals
             {
                 return "V";
             }
+            if (number == 9)
+            {
+                return "IX";
+            }
+
             if (number == 10)
             {
                 return "X";
