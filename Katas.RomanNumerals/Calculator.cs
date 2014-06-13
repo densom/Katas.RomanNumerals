@@ -8,12 +8,21 @@ namespace Katas.RomanNumerals
 {
     public static class Calculator
     {
+        private static Dictionary<int, string> Numerals = new Dictionary<int, string>()
+            {
+                {1,"I"},
+                {4, "IV"},
+                {5,"V"},
+                {9,"IX"},
+                {10,"X"},
+            };
+
         public static string Convert(int number)
         {
             var resultBuilder = new StringBuilder();
             var romanNumeral = "I";
 
-            if (number.IsBetween(1,3))
+            if (number.IsBetween(1, 3))
             {
                 romanNumeral = "I";
                 int repeatCharacter = number > 3 ? 3 : number;
@@ -24,30 +33,18 @@ namespace Katas.RomanNumerals
                     resultBuilder.Append(romanNumeral);
                 }
             }
-            if (number == 4)
-            {
-                return "IV";
-            }
-            if (number == 5)
-            {
-                return "V";
-            }
-            if (number == 9)
-            {
-                return "IX";
-            }
 
-            if (number == 10)
+            if (IsSingleRomanNumeralOrSpecialCase(number))
             {
-                return "X";
+                return Numerals[number];
             }
-            {
-                
-            }
-            
-            
 
             return resultBuilder.ToString();
+        }
+
+        private static bool IsSingleRomanNumeralOrSpecialCase(int number)
+        {
+            return Numerals.ContainsKey(number);
         }
     }
 
