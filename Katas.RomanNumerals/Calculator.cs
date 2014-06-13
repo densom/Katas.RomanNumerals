@@ -32,8 +32,8 @@ namespace Katas.RomanNumerals
                 return Numerals[number];
             }
 
-            var firstPart = GetClosestNumeralWithoutGoingOver(number);
-            return firstPart.Value + Convert(number - firstPart.Key);
+            var closestNumeral = GetClosestNumeralWithoutGoingOver(number);
+            return closestNumeral.Value + Convert(number - closestNumeral.Key);
         }
 
         private static KeyValuePair<int, string> GetClosestNumeralWithoutGoingOver(int number)
