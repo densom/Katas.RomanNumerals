@@ -24,7 +24,10 @@ namespace Katas.RomanNumerals
                     resultBuilder.Append(romanNumeral);
                 }
             }
-
+            if (number == 4)
+            {
+                return "IV";
+            }
             if (number == 5)
             {
                 return "V";
