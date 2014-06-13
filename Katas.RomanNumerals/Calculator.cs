@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Katas.RomanNumerals
 {
-    public class Class1
+    public static class Calculator
     {
+        public static string Convert(int number)
+        {
+            return "I";
+        }
     }
 }
