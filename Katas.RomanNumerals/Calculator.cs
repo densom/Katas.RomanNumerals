@@ -30,12 +30,19 @@ namespace Katas.RomanNumerals
             }
 
             var closestNumeral = GetClosestNumeralWithoutGoingOver(number);
-            return closestNumeral.Value + Convert(number - closestNumeral.Key);
+            return closestNumeral.Roman + Convert(number - closestNumeral.Arabic);
         }
 
-        private static KeyValuePair<int, string> GetClosestNumeralWithoutGoingOver(int number)
+        private static RomanArabicPair GetClosestNumeralWithoutGoingOver(int number)
         {
-            return Numerals.LastOrDefault(n => n.Key <= number);
+            return Numerals.Select(valuePair => new RomanArabicPair {Arabic = valuePair.Key, Roman = valuePair.Value})
+                           .LastOrDefault(pair => pair.Arabic <= number);
         }
+    }
+
+    public struct RomanArabicPair
+    {
+        public int Arabic;
+        public string Roman;
     }
 }
