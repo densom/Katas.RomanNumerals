@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Katas.RomanNumerals
 {
@@ -27,9 +24,9 @@ namespace Katas.RomanNumerals
 
         public static string Convert(int number)
         {
-            if (IsSingleRomanNumeralOrSpecialCase(number))
+            if (number == 0)
             {
-                return Numerals[number];
+                return "";
             }
 
             var closestNumeral = GetClosestNumeralWithoutGoingOver(number);
@@ -38,20 +35,7 @@ namespace Katas.RomanNumerals
 
         private static KeyValuePair<int, string> GetClosestNumeralWithoutGoingOver(int number)
         {
-            return Numerals.LastOrDefault(n => n.Key < number);
-        }
-
-        private static bool IsSingleRomanNumeralOrSpecialCase(int number)
-        {
-            return Numerals.ContainsKey(number);
-        }
-    }
-
-    public static class IntegerExtensions
-    {
-        public static bool IsBetween(this int compareTo, int leftSide, int rightSide)
-        {
-            return (compareTo >= leftSide && compareTo <= rightSide);
+            return Numerals.LastOrDefault(n => n.Key <= number);
         }
     }
 }
