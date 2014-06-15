@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Katas.RomanNumerals
@@ -35,8 +36,10 @@ namespace Katas.RomanNumerals
 
         private static RomanArabicPair GetClosestNumeralWithoutGoingOver(int number)
         {
-            return Numerals.Select(valuePair => new RomanArabicPair {Arabic = valuePair.Key, Roman = valuePair.Value})
-                           .LastOrDefault(pair => pair.Arabic <= number);
+            return Numerals.OrderByDescending(pair => pair.Key)
+                           .Where(pair => pair.Key <= number)
+                           .Select(pair => new RomanArabicPair {Arabic = pair.Key, Roman = pair.Value})
+                           .First();
         }
     }
 
